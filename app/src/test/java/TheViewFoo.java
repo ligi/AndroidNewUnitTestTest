@@ -8,14 +8,14 @@ public class TheViewFoo {
     @Test
     public void testShouldPass() {
         final ViewFoo viewFoo = new ViewFoo(null);
-        assertEquals(viewFoo.returnSomething(),"something");
+        assertEquals("something", viewFoo.returnSomething());
     }
 
 
     @Test
     public void testShouldFail() {
         final ViewFoo viewFoo = new ViewFoo(null);
-        assertEquals(viewFoo.returnSomething(),"somethingElse");
+        assertEquals("somethingElse", viewFoo.returnSomething());
     }
 
 }
