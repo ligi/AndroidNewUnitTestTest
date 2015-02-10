@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">UnitTestTest</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="test_string">test_string</string>
 </resources>
