@@ -14,4 +14,9 @@ public class ViewFoo extends TextView {
         return "something";
     }
 
+    public String returnTestStringFromRes() {
+        return getContext().getString(R.string.test_string);
+    }
+
+
 }
