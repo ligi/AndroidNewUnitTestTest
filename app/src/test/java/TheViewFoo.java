@@ -7,8 +7,7 @@ import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertEquals;
 
-@RunWith(RobolectricTestRunner.class)
-@Config(emulateSdk = 18,manifest = "app/src/main/AndroidManifest.xml")
+@RunWith(CustomRobolectricRunner.class)
 
 public class TheViewFoo {
 
