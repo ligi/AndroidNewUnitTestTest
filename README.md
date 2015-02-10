@@ -3,6 +3,7 @@ Generally it is working pretty nice - but there are some open problems with the 
 
  * https://code.google.com/p/android/issues/detail?id=135513
  * https://code.google.com/p/android/issues/detail?id=140267 ( surfaces in not working spoon: https://github.com/stanfy/spoon-gradle-plugin/issues/37 )
+ * https://code.google.com/p/android/issues/detail?id=132394
 
 
 There is now also initial documentation on this:
