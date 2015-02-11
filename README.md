@@ -20,3 +20,6 @@ You can also use this in combination with robolectric. You need the changes from
 
 this is used on the branch: with_robolectric
 Unfortunately tests will fail with ResourceNotFoundException on the console - but it works in the IDE
+
+Known Problems with Robolectric:
+ * resources from library projects cannot be resolved ( android.content.res.Resources$NotFoundException )
