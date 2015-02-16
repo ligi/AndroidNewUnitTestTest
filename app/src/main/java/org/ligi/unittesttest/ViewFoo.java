@@ -19,4 +19,9 @@ public class ViewFoo extends TextView {
     }
 
 
+    public String returnTestStringFromLibraryRes() {
+        return getContext().getString(R.string.abc_action_bar_home_description);
+    }
+
+
 }

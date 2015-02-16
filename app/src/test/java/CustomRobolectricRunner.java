@@ -1,15 +1,9 @@
-import android.support.v7.internal.view.SupportMenuInflater;
-import android.view.Menu;
-
 import org.junit.runners.model.InitializationError;
+import org.ligi.unittesttest.BuildConfig;
 import org.robolectric.AndroidManifest;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.SdkConfig;
-import org.robolectric.SdkEnvironment;
 import org.robolectric.annotation.Config;
-import org.robolectric.annotation.Implementation;
-import org.robolectric.annotation.Implements;
-import org.robolectric.shadows.ShadowMenuInflater;
 
 import java.io.File;
 import java.util.Properties;
@@ -22,19 +16,21 @@ public class CustomRobolectricRunner extends RobolectricTestRunner {
 
     @Override
     protected AndroidManifest getAppManifest(Config config) {
-        String path = "src/main/AndroidManifest.xml";
+        String manifestPath = "AndroidManifest.xml";
+        String resPath = "build/intermediates/res/"+BuildConfig.BUILD_TYPE;
 
         // android studio has a different execution root for tests than pure gradle
         // so we avoid here manual effort to get them running inside android studio
-        if (!new File(path).exists()) {
-            path = "app/" + path;
+        if (!new File(manifestPath).exists()) {
+            manifestPath = "app/" + manifestPath;
         }
 
-        config = overwriteConfig(config, "manifest", path);
+        config = overwriteConfig(config, "manifest", manifestPath);
+        config = overwriteConfig(config, "resourceDir", resPath);
         return super.getAppManifest(config);
     }
 
-    protected Config.Implementation overwriteConfig(
+    private Config.Implementation overwriteConfig(
             Config config, String key, String value) {
         Properties properties = new Properties();
         properties.setProperty(key, value);
@@ -49,22 +45,5 @@ public class CustomRobolectricRunner extends RobolectricTestRunner {
         // so we must downgrade to simulate the latest supported version.
         config = overwriteConfig(config, "emulateSdk", "18");
         return super.pickSdkVersion(appManifest, config);
-    }
-
-    @Override
-    protected void configureShadows(SdkEnvironment sdkEnvironment, Config config) {
-        Properties properties = new Properties();
-        // to add more shadows use white space separation + " " +
-        properties.setProperty("shadows", ShadowSupportMenuInflater.class.getName());
-        super.configureShadows(sdkEnvironment, new Config.Implementation(config, Config.Implementation.fromProperties(properties)));
-    }
-
-
-    @Implements(SupportMenuInflater.class)
-    public class ShadowSupportMenuInflater extends ShadowMenuInflater {
-        @Implementation
-        public void inflate(int menuRes, Menu menu) {
-            super.inflate(menuRes, menu);
-        }
     }
 }
